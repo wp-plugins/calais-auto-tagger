@@ -13,6 +13,8 @@ With the Calais Auto Tagger plugin, you'll never have to think of tags for your 
 
 This plugin requires PHP 5 and the cURL library (both of which are available on most web hosts).
 
+Also see <a href="http://www.dangrossman.info/wp-calais-archive-tagger/">WP Calais Archive Tagger</a> for automatically tagging your entire post archive. Using the same semantic analysis, it can automatically add tags to up to 200 posts in under 5 minutes, while preserving tags you added by hand.
+
 == Installation ==
 
 1. Upload `calais_auto_tagger.php` and `opencalais.php` to the `/wp-contents/plugins` directory

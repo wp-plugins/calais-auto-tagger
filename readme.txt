@@ -13,8 +13,6 @@ With the Calais Auto Tagger plugin, you'll never have to think of tags for your 
 
 This plugin requires PHP 5 and the cURL library (both of which are available on most web hosts).
 
-If you wish to donate to this plugn, instead sign up for a PRO account at my web stats service W3Counter. More information at http://www.w3counter.com/about/pricing. 
-
 == Installation ==
 
 1. Upload `calais_auto_tagger.php` and `opencalais.php` to the `/wp-contents/plugins` directory

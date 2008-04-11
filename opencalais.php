@@ -14,7 +14,6 @@ class OpenCalaisException extends Exception {}
 
 class OpenCalais {
 
-	const APIURL = "http://api.opencalais.com/enlighten/calais.asmx/Enlighten";
 	private $apikey;
 	private $allowDistribution = false;
 	private $allowSearch = false;
@@ -135,7 +134,7 @@ class OpenCalais {
 		$poststring = $this->urlencodeArray($postdata);
 			
 		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, self::APIURL);
+		curl_setopt($ch, CURLOPT_URL, "http://api.opencalais.com/enlighten/calais.asmx/Enlighten");
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($ch, CURLOPT_HEADER, 0);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $poststring);

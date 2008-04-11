@@ -1,6 +1,6 @@
 === WP Calais Auto Tagger ===
 Contributors: dangrossman
-Tags: comments, spam
+Tags: tags, tagging, tagger, semantic web, semweb, semantic, suggest, suggestion, post
 Requires at least: 2.3
 Tested up to: 2.5
 Stable tag: trunk

@@ -5,7 +5,7 @@ Requires at least: 2.3
 Tested up to: 2.5
 Stable tag: trunk
 
-The plugin performs semantic analysis of your post text and suggest tags for you.
+The plugin performs semantic analysis of your post text and suggests tags for you.
 
 == Description ==
 

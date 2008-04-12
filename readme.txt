@@ -11,7 +11,7 @@ The plugin performs semantic analysis of your post text and suggests tags for yo
 
 With the Calais Auto Tagger plugin, you'll never have to think of tags for your posts again. The plugin uses the Open Calais API to perform semantic analysis of your post text and suggest tags for you. The plugin adds a new "Get Tags" button to your post interface which retrieves the suggestions, and an "Add These Tags" button which adds the suggested tags to the post.
 
-This plugin requires PHP 5 and the cURL library (both of which are available on most web hosts).
+This plugin requires <b>PHP 5</b> and the cURL library (both of which are available on most web hosts).
 
 Also see <a href="http://wordpress.org/extend/plugins/wp-calais-archive-tagger/">WP Calais Archive Tagger</a> for automatically tagging your entire post archive. Using the same semantic analysis, it can automatically add tags to up to 200 posts in under 5 minutes, while preserving tags you added by hand.
 

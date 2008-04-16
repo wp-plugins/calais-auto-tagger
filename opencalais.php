@@ -71,6 +71,7 @@ class OpenCalais {
 							 'City' => 'City',
 							 'Company' => 'Company',
 							 'Continent' => 'Continent',
+							 'Country' => 'Country',
 							 'Currency' => 'Currency',
 							 'EmailAddress' => 'Email Address',
 							 'Facility' => 'Facility',

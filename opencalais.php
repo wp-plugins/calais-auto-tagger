@@ -2,11 +2,11 @@
 
 /**
 * Open Calais Tags
-* Last updated 4/7/2008
+* Last updated 7/8/2008
 * Copyright (c) 2008 Dan Grossman 
 * http://www.dangrossman.info
 * 
-* Please see http://www.dangrossman.info/open-calais-tagsopen-calais-tags
+* Please see http://www.dangrossman.info/open-calais-tags
 * for documentation and license information.
 */
 
@@ -14,6 +14,7 @@ class OpenCalaisException extends Exception {}
 
 class OpenCalais {
 
+	const APIURL = "http://api.opencalais.com/enlighten/calais.asmx/Enlighten";
 	private $apikey;
 	private $allowDistribution = false;
 	private $allowSearch = false;
@@ -73,19 +74,35 @@ class OpenCalais {
 							 'Continent' => 'Continent',
 							 'Country' => 'Country',
 							 'Currency' => 'Currency',
+							 'Date' => 'Date',
 							 'EmailAddress' => 'Email Address',
+							 'EntertainmentAwardEvent' => 'EntertainmentAwardEvent',
 							 'Facility' => 'Facility',
 							 'FaxNumber' => 'Fax Number',
 							 'Holiday' => 'Holiday',
 							 'IndustryTerm' => 'Industry Term',
+							 'MarketIndex' => 'Market Index',
+							 'MedicalCondition' => 'Medical Condition',
+							 'Movie' => 'Movie',
+							 'MusicAlbum' => 'Music Album',
+							 'MusicGroup' => 'Music Group',
 							 'NaturalDisaster' => 'Natural Disaster',
 							 'NaturalFeature' => 'Natural Feature',
 							 'Organization' => 'Organization',
 							 'Person' => 'Person',
 							 'PhoneNumber' => 'Phone Number',
+							 'Product' => 'Product',
 							 'ProvinceOrState' => 'Province or State',
+							 'PublishedMedium' => 'Published Medium',
+							 'RadioProgram' => 'Radio Program',
+							 'RadioStation' => 'Radio Station',
 							 'Region' => 'Region',
+							 'SportsEvent' => 'Sports Event',
+							 'SportsGame' => 'Sports Game',
 							 'Technology' => 'Technology',
+							 'Time' => 'Time',
+							 'TVShow' => 'TV Show',
+							 'TVStation' => 'TV Station',
 							 'URL' => 'URL');
 							 
 		$key = trim($key);
@@ -135,7 +152,7 @@ class OpenCalais {
 		$poststring = $this->urlencodeArray($postdata);
 			
 		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_URL, "http://api.opencalais.com/enlighten/calais.asmx/Enlighten");
+		curl_setopt($ch, CURLOPT_URL, self::APIURL);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($ch, CURLOPT_HEADER, 0);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, $poststring);

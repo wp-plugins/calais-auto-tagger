@@ -2,7 +2,7 @@
 Contributors: dangrossman
 Tags: tags, tagging, tagger, semantic web, semweb, semantic, suggest, suggestion, post
 Requires at least: 2.3
-Tested up to: 2.6
+Tested up to: 2.7.1
 Stable tag: trunk
 
 The plugin performs semantic analysis of your post text and suggests tags for you.

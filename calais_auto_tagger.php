@@ -4,7 +4,7 @@
 Plugin Name: WP Calais Auto Tagger
 Plugin URI: http://www.dangrossman.info/wp-calais-auto-tagger
 Description: Suggests tags for your posts based on semantic analysis of your post content with the Open Calais API.
-Version: 1.0
+Version: 1.1
 Author: Dan Grossman
 Author URI: http://www.dangrossman.info
 

@@ -35,6 +35,10 @@ You should receive the key immediately.
 
 Calais Auto Tagger adds a box to your post writing and editing screens with a "Get Tags" button. Once you've written your post, click the "Get Tags" button and Calais Auto Tagger will analyze your post content and suggest a list of tags. Click the "Add Tags" button to add them to the post's tag list.
 
+= What's new in version 1.1? =
+
+Updated opencalais.php to use new API URL, support new entity types, and not add semicolons to tags.
+
 == Screenshots ==
 
 1. Calais Auto Tagger interface

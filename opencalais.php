@@ -59,7 +59,7 @@ class OpenCalais {
 		$matches = preg_match_all($pattern, $xml, $rdf, PREG_SET_ORDER);
 		
 		foreach ($rdf as $arr) {
-			$this->addEntity($arr[0]);
+			$this->addEntity($arr[1]);
 		}
 		
 		return $this->entities;

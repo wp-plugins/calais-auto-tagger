@@ -53,12 +53,12 @@ function calais_box() {
 	}
 
 	function calais_savetags() {
-		var newtags = jQuery('#tags-input').val() + ', ' + jQuery('#calais_suggestions').html();
+		var newtags = jQuery('#calais_suggestions').html();
 		newtags = newtags.replace( /\s+,+\s*/g, ',' ).replace( /,+/g, ',' ).replace( /,+\s+,+/g, ',' ).replace( /,+\s*$/g, '' ).replace( /^\s*,+/g, '' );
-		jQuery('#tags-input').val( newtags );
-		if (typeof tag_update_quickclicks == 'function') {
-			tag_update_quickclicks();
-		}
+		jQuery('#post_tag').find(".the-tags").val( newtags );
+		
+		tag_update_quickclicks('#post_tag');
+		
 		jQuery('#newtag').val('');
 		jQuery('#newtag').focus();
 	}

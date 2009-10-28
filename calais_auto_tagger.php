@@ -1,10 +1,10 @@
 <?php
 /***************************************************************************
 
-Plugin Name: WP Calais Auto Tagger
+Plugin Name: Calais Auto Tagger
 Plugin URI: http://www.dangrossman.info/wp-calais-auto-tagger
 Description: Suggests tags for your posts based on semantic analysis of your post content with the Open Calais API.
-Version: 1.2
+Version: 1.3
 Author: Dan Grossman
 Author URI: http://www.dangrossman.info
 
@@ -17,76 +17,71 @@ require('opencalais.php');
 //Initialization to add the box to the post page
 add_action('admin_menu', 'calais_init');
 function calais_init() {
-	if (function_exists('add_meta_box')) {
-		add_meta_box('calais', 'Calais Auto Tagger', 'calais_box', 'post', 'advanced');
-	} else {
-		add_action('dbx_post_sidebar', 'calais_box', 1);
-	}
-	add_submenu_page('plugins.php', 'Calais Configuration', 'Calais Configuration', 'manage_options', 'calais-key-config', 'calais_conf');
+	add_meta_box('calais', 'Calais Auto Tagger', 'calais_box', 'post', 'normal', 'high');
+	add_submenu_page('options-general.php', 'Calais API Key', 'Calais API Key', 10, __FILE__, 'calais_conf');
 }
 
 function calais_box() {
 	?>
-	<script type="text/javascript">
-	//<![CDATA[
-
-	function calais_gettags() {
-		jQuery.post('<?php bloginfo( 'wpurl' ); ?>/wp-admin/admin-ajax.php', {text: calais_getcontent(), action: 'calais_gettags', cookie: document.cookie}, calais_showtags);
-			
-	}
-	
-	function calais_getcontent() {
-		if (typeof tinyMCE != 'undefined' && !tinyMCE.selectedInstance.spellcheckerOn) {
-			if (typeof tinyMCE.triggerSave == 'function') {
-				tinyMCE.triggerSave();
-			} else {
-				tinyMCE.wpTriggerSave();
-			}	
+	<style type="text/css">
+		.calais_tag {
+			float: left;
+			padding: 3px 6px 7px 3px;
+			background: #e1f3fd;
+			font-size: 8pt;
+			color: #000;
+			margin: 0 5px 5px 0;
 		}
-		return document.getElementById('content').value;
-	}
+		.calais_tag img {
+			position: relative;
+			top: 3px;
+		}
+	</style>
 	
-	function calais_showtags(tags) {
-		document.getElementById('calais_suggestions').innerHTML = tags;
-		document.getElementById('calais_suggestions_label').style.display = 'inline';
-		document.getElementById('calais_suggestions_add').style.display = 'inline';
+	<?php require('js.inc'); ?>
+
+	<?php
+	//Existing post tags
+	global $post;
+	$existing_tags = wp_get_post_tags($post->ID);
+	
+	$tags = array();
+	
+	if (count($existing_tags) > 0) {
+	    foreach ($existing_tags as $tag) {
+	        if ($tag->taxonomy == 'post_tag')
+	            $tags[] = $tag->name;
+	    }
 	}
 
-	function calais_savetags() {
-		var newtags = jQuery('#calais_suggestions').html();
-		newtags = newtags.replace( /\s+,+\s*/g, ',' ).replace( /,+/g, ',' ).replace( /,+\s+,+/g, ',' ).replace( /,+\s*$/g, '' ).replace( /^\s*,+/g, '' );
-		jQuery('#post_tag').find(".the-tags").val( newtags );
+	?>
+	<input type="hidden" name="calais_taglist" id="calais_taglist" value="<?php echo implode(', ', $tags); ?>" />
 		
-		tag_update_quickclicks('#post_tag');
-		
-		jQuery('#newtag').val('');
-		jQuery('#newtag').focus();
-	}
-	
-	//]]>
-	</script>
+	<label for="calais_manual">Add your own tags:</label>
+	<br />
+	<input type="text" name="calais_manual" id="calais_manual" value="" /> <input type="button" class="button" onclick="calais_add_manual()" value="Add Tags" />
+	<br /><br />
 
-	<?php if (!function_exists('add_meta_box')): ?>
-	<fieldset id="calais_dbx" class="dbx-box">
-	<h3 class="dbx-handle">Calais Auto Tagger</h3>
-	<div class="dbx-content">
-	<?php endif; ?>
-	
-	<input type="button" class="button" onclick="calais_gettags()" value="Get Tags" /><br /><br />
+	<b>Post Tags:</b>
+	<br /><br />
+	<div id="calais_tag_box" style="min-height: 40px">
+	</div>
 
-	<span style='font-size: 10pt; font-weight: bold; display: none' id="calais_suggestions_label">Suggestions:</span>
+	<div style="clear: left"></div>
 	
-	<div id="calais_suggestions" style='font-size: 10pt; margin-bottom: 10px'>
+	<b>Suggested Tags:</b>
+	<br /><br />
+	<div id="calais_suggestions" style="min-height: 40px">
 
 	</div>
 
-	<input type="button" class="button" id="calais_suggestions_add" onclick="calais_savetags()" value="Add These Tags" style="display: none" />
+	<div style="clear: left"></div>
+	
+	<input type="button" class="button" onclick="calais_gettags()" value="Get Tag Suggestions" /><br /><br />
 
-        <?php if (!function_exists('add_meta_box')): ?>
-	</div>
-	</fieldset>
-        <?php 
-	endif;	
+	<script type="text/javascript"> calais_redisplay_tags(); </script>
+
+<?php	
 }
 
 function calais_conf() {
@@ -120,6 +115,24 @@ function calais_conf() {
 	<?php	
 }
 
+add_action('save_post', 'calais_savetags', 10, 2);
+
+function calais_savetags($post_id, $post) {
+
+	if ($post->post_type == 'revision')
+		return;
+
+	$taglist = $_POST['calais_taglist'];
+	$tags = split(', ', $taglist);
+	if (strlen(trim($taglist)) > 0 && count($tags) > 0) {
+		wp_set_post_tags($post_id, $tags);
+	} else {
+		wp_set_post_tags($post_id, array());
+	}
+	
+}
+
+
 //Register an AJAX hook for the function to get the tags
 add_action('wp_ajax_calais_gettags', 'calais_gettags');
 
@@ -144,3 +157,4 @@ function calais_gettags() {
 	die(implode($entities, ', '));
 	
 }
+

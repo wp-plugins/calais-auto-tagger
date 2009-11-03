@@ -11,12 +11,8 @@
         }
 
         function calais_getcontent() {
-                if (typeof tinyMCE != 'undefined' && !tinyMCE.selectedInstance.spellcheckerOn) {
-                        if (typeof tinyMCE.triggerSave == 'function') {
-                                tinyMCE.triggerSave();
-                        } else {
-                                tinyMCE.wpTriggerSave();
-                        }
+                if (typeof tinyMCE != 'undefined' && tinyMCE.activeEditor != null && tinyMCE.activeEditor.isHidden() == false) {
+			return tinyMCE.activeEditor.getBody().innerHTML;
                 }
                 return document.getElementById('content').value;
         }

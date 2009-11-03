@@ -13,6 +13,8 @@ With the Calais Auto Tagger plugin, you'll never have to think of tags for your 
 
 This plugin requires <b>PHP 5</b> and the cURL library (both of which are available on most web hosts).
 
+v1.31 fixes bugs with the visual editor and scheduled posts.
+
 == Installation ==
 
 1. Upload the plugin files to `/wp-contents/plugins/calais-auto-tagger` directory

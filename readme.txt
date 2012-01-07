@@ -1,8 +1,8 @@
 === WP Calais Auto Tagger ===
 Contributors: dangrossman
-Tags: tags, tagging, tagger, semantic web, semweb, semantic, suggest, suggestion, post
+Tags: tags, tagging, tagger, semantic, suggest, suggestion, post, calais, opencalais
 Requires at least: 2.7
-Tested up to: 2.8.5
+Tested up to: 3.3.1
 Stable tag: trunk
 
 The plugin performs semantic analysis of your post text and suggests tags for you.
@@ -13,8 +13,6 @@ With the Calais Auto Tagger plugin, you'll never have to think of tags for your 
 
 This plugin requires <b>PHP 5</b> and the cURL library (both of which are available on most web hosts). 
 
-v1.3.1 fixes bugs with the visual editor and scheduled posts.
-
 == Installation ==
 
 1. Upload the plugin files to `/wp-contents/plugins/calais-auto-tagger` directory
@@ -24,8 +22,7 @@ v1.3.1 fixes bugs with the visual editor and scheduled posts.
 To obtan a Calais API key:
 
 1. Go to the Open Calais website at http://opencalais.com/
-2. Click "Register" at the top of the page and create an account
-3. Request an API key at http://developer.opencalais.com/apps/register
+2. Click "Request API Key" at the top of the page and create an account
 
 You should receive the key immediately.
 
@@ -33,7 +30,7 @@ You should receive the key immediately.
 
 = How do I use this plugin? =
 
-Calais Auto Tagger adds a box to your post writing and editing screens with a "Get Tag Suggestions" button. Once you've written your post, click the  button and Calais Auto Tagger will analyze your post content and suggest a list of tags. Click the plug icon next to a tag to add it to your post's tags.
+Calais Auto Tagger adds a box to your post writing and editing screens with a "Tag Suggestions" button. Once you've written your post, click the button and Calais Auto Tagger will analyze your post content and suggest a list of tags. Click the plus icon next to a tag to add it to your post's tags.
 
 == Screenshots ==
 

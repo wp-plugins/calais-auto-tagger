@@ -5,7 +5,7 @@ Requires at least: 2.7
 Tested up to: 3.3.1
 Stable tag: trunk
 
-The plugin performs semantic analysis of your post text and suggests tags for you.
+The plugin performs semantic analysis of your post text and suggests tags for you using Open Calais.
 
 == Description ==
 

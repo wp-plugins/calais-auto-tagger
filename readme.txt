@@ -2,7 +2,7 @@
 Contributors: dangrossman
 Tags: tags, tagging, tagger, semantic, suggest, suggestion, post, calais, opencalais
 Requires at least: 2.7
-Tested up to: 3.3.1
+Tested up to: 3.4.2
 Stable tag: trunk
 
 The plugin performs semantic analysis of your post text and suggests tags for you using Open Calais.
